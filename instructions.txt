@@ -1,0 +1,54 @@
+All the instructions are based on an Ubuntu 18.04LTS System.
+
+========INSTALL JDK========
+- sudo apt install default-jre
+- sudo apt install default-jdk
+
+=======INSTALL MAVEN=======
+- sudo apt update
+- sudo apt install maven
+
+- mvn -version
+This should give you something similar to:
+Apache Maven 3.5.2
+Maven home: /usr/share/maven
+Java version: 10.0.2, vendor: Oracle Corporation
+Java home: /usr/lib/jvm/java-11-openjdk-amd64
+Default locale: en_US, platform encoding: ISO-8859-1
+OS name: "linux", version: "4.15.0-36-generic", arch: "amd64", family: "unix"
+
+Maven is used as the build system here.
+
+==========BUILDING=========
+
+In the root directory of the project:
+
+- mvn clean package
+
+This will build the project, run tests and create a fat jar with all necessary dependencies, ready to execute.
+
+Ideally all tests should pass. One test tests for proper creation of the server, one test tests for the processing of a single CSV line given as a string and the last test tests for processing of an uploaded CSV file.
+
+==========RUNNING AND TESTING INDEPENDENTLY=========
+
+Run this bash script from the root directory of the project.
+
+- ./run.sh
+
+This should start the server.
+
+Download and install Postman on your system.
+
+Open Postman and enter this in the url text box:
+
+- http://localhost:8080/alertapp/checkViolation/?serverData=1234,12,100,50
+
+This should give you this output: Alert,1234,MEMORY_UTILIZATION>75.0
+
+To test processing a CSV file go to the body tab in Postman and under headers choose the vals.csv file included with this project. Change the request method to POST.
+
+This request should give you a large result like this:
+
+[ "Alert,10021,MEMORY_UTILIZATION>75.0", "Alert,10022,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10023,MEMORY_UTILIZATION>75.0", "Alert,10024,MEMORY_UTILIZATION>75.0", "Alert,10025,DISK_UTILIZATION>60.0", "Alert,10026,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10027,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10028,CPU_UTILIZATION>85.0", "No Alert,10029", "No Alert,10030", "Alert,10031,DISK_UTILIZATION>60.0", "Alert,10032,DISK_UTILIZATION>60.0", "Alert,10033,DISK_UTILIZATION>60.0", "No Alert,10034", "Alert,10035,DISK_UTILIZATION>60.0", "Alert,10036,MEMORY_UTILIZATION>75.0", "Alert,10037,MEMORY_UTILIZATION>75.0", "Alert,10038,DISK_UTILIZATION>60.0", "Alert,10039,DISK_UTILIZATION>60.0", "Alert,10040,DISK_UTILIZATION>60.0", "Alert,10041,DISK_UTILIZATION>60.0", "Alert,10042,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10043,MEMORY_UTILIZATION>75.0", "Alert,10044,CPU_UTILIZATION>85.0", "Alert,10045,CPU_UTILIZATION>85.0,DISK_UTILIZATION>60.0", "Alert,10046,DISK_UTILIZATION>60.0", "Alert,10047,CPU_UTILIZATION>85.0,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10048,DISK_UTILIZATION>60.0", "Alert,10049,CPU_UTILIZATION>85.0", "Alert,10050,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "No Alert,10051", "No Alert,10052", "No Alert,10053", "Alert,10054,CPU_UTILIZATION>85.0", "Alert,10055,MEMORY_UTILIZATION>75.0", "No Alert,10056", "No Alert,10057", "Alert,10058,CPU_UTILIZATION>85.0", "Alert,10059,CPU_UTILIZATION>85.0", "No Alert,10060", "Alert,10061,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10062,CPU_UTILIZATION>85.0", "Alert,10063,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "No Alert,10064", "Alert,10065,MEMORY_UTILIZATION>75.0", "Alert,10066,MEMORY_UTILIZATION>75.0", "Alert,10067,MEMORY_UTILIZATION>75.0", "No Alert,10068", "No Alert,10069", "No Alert,10070", "No Alert,10071", "No Alert,10072", "Alert,10073,CPU_UTILIZATION>85.0", "No Alert,10074", "Alert,10075,MEMORY_UTILIZATION>75.0", "Alert,10076,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10077,MEMORY_UTILIZATION>75.0", "No Alert,10078", "Alert,10079,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10080,CPU_UTILIZATION>85.0,MEMORY_UTILIZATION>75.0", "Alert,10081,DISK_UTILIZATION>60.0", "Alert,10082,MEMORY_UTILIZATION>75.0", "No Alert,10083", "No Alert,10084", "Alert,10085,CPU_UTILIZATION>85.0", "Alert,10086,CPU_UTILIZATION>85.0", "Alert,10087,MEMORY_UTILIZATION>75.0", "Alert,10088,MEMORY_UTILIZATION>75.0", "No Alert,10089", "Alert,10090,DISK_UTILIZATION>60.0", "Alert,10091,DISK_UTILIZATION>60.0", "Alert,10092,DISK_UTILIZATION>60.0", "No Alert,10093", "Alert,10094,CPU_UTILIZATION>85.0,DISK_UTILIZATION>60.0", "Alert,10095,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "No Alert,10096", "Alert,10097,DISK_UTILIZATION>60.0", "Alert,10098,MEMORY_UTILIZATION>75.0", "Alert,10099,MEMORY_UTILIZATION>75.0", "Alert,10100,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10101,DISK_UTILIZATION>60.0", "Alert,10102,CPU_UTILIZATION>85.0,DISK_UTILIZATION>60.0", "Alert,10103,DISK_UTILIZATION>60.0", "Alert,10104,MEMORY_UTILIZATION>75.0", "Alert,10105,MEMORY_UTILIZATION>75.0", "Alert,10106,DISK_UTILIZATION>60.0", "No Alert,10107", "Alert,10108,DISK_UTILIZATION>60.0", "Alert,10109,DISK_UTILIZATION>60.0", "Alert,10110,DISK_UTILIZATION>60.0", "Alert,10111,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "Alert,10112,DISK_UTILIZATION>60.0", "Alert,10113,DISK_UTILIZATION>60.0", "Alert,10114,MEMORY_UTILIZATION>75.0", "Alert,10115,MEMORY_UTILIZATION>75.0,DISK_UTILIZATION>60.0", "No Alert,10116", "No Alert,10117", "Alert,10118,CPU_UTILIZATION>85.0", "No Alert,10119", "No Alert,10120" ]
+
+
