@@ -82,7 +82,7 @@
     </build>
 
     <properties>
-        <vertx.version>3.9.1</vertx.version>
+        <vertx.version>3.9.4</vertx.version>
         <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
     </properties>
 
